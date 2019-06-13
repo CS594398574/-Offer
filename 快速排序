@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+
+void swap(int &x, int &y) {
+	int temp = x;
+	x = y;
+	y = temp;
+}
+int  partition(int a[], int left, int right) {
+	int key = a[right];							//取最右边的值为基准
+	while (left < right) {	
+		while (left < right && a[left] <= key) {
+			left++;
+		}
+		swap(a[left],a[right]);
+		while (left < right &&  key< a[right]) {
+			right--;
+		}
+		swap(a[right], a[left]);	
+	}
+	a[left] = key;
+	return left;
+}
+
+void Quicksort(int a[], int left, int right) {
+	if (left < right) {
+		int index = partition(a, left, right);
+		Quicksort(a, left, index - 1);
+		Quicksort(a, index + 1, right);
+	}	
+}
+int  main() {
+	int a[8]={10,9,8,6,7,1,2,3};
+	int len = 8;
+	int x = 0; int y = 2;
+	swap(x, y);
+	cout << x << "," << y << endl;
+	Quicksort(a, 0, len-1);
+	for (int i = 0; i < len; i++) {
+		cout << a[i] << " ";
+	}
+	return 0;
+}
