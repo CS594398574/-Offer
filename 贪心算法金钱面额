@@ -1,0 +1,17 @@
+#include<stdio.h>
+using namespace std;
+int main() {
+	const int RMB[] = {200,100,20,10,5,1};
+	const int NUM = 6;
+	int x = 628;
+	int count = 0;
+	for (int i = 0; i < NUM; i++) {
+		int use = x / RMB[i];
+		count += use;
+		x = x - RMB[i] * use;
+		printf("需要面值为%d的%d张\n", RMB[i], use);
+		printf("剩余需要支付金额%d\n", x);
+	}
+	printf("总共金额面值：%d",count);
+	return 0;
+}
